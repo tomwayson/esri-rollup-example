@@ -1,0 +1,23 @@
+{
+  "name": "esri-rollup-example",
+  "version": "0.0.1",
+  "description": "Example using rollup to bundle ES6 modules that depend on the ArcGIS API for JavaScript",
+  "main": "src/main.js",
+  "dependencies": {},
+  "devDependencies": {
+    "babel-preset-es2015-rollup": "^1.1.1",
+    "rollup": "^0.25.8",
+    "rollup-plugin-babel": "^2.4.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "rollup -c rollup-config.js"
+  },
+  "keywords": [
+    "ArcGIS",
+    "JavaScript",
+    "rollup"
+  ],
+  "author": "Tom Wayson <tom@tomwayson.com>",
+  "license": "MIT"
+}
