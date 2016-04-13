@@ -16,7 +16,6 @@ npm run build
 Serve the folder from any web server and navigate to index.html. Enjoy.
 
 ## TODO:
-* minify bundled code using [plugin](https://github.com/TrySound/rollup-plugin-uglify) or as post bundle build step?
 * how to handle other libs (like Bootstrap)? To bundle or not?
 * [test w/ React](https://github.com/rollup/rollup/issues/437)?
 * [test w/ web components](https://github.com/tomwayson/custom-elements-dev-summit-2016/)?
