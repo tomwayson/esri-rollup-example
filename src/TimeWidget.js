@@ -15,7 +15,7 @@ export default declare([_WidgetBase, _TemplatedMixin], {
     ${strings.timeMessage} <span data-dojo-attach-point="timeNode"></span>
   </div>`,
 
-  postCreate() {
+  postCreate () {
     this.inherited(arguments);
 
     this.timeNode.innerHTML = moment().format('MMMM Do YYYY, h:mm:ss a');
