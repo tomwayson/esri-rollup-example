@@ -1,5 +1,5 @@
 import mapService from './mapService';
-import TimeWidget from './TimeWidget';
+import SidePanel from './SidePanel';
 
 mapService.createMap('map', {
   center: [-118, 34.5],
@@ -7,5 +7,5 @@ mapService.createMap('map', {
   basemap: 'topo'
 });
 
-const timeWidget = new TimeWidget();
-timeWidget.placeAt('time');
+const sidePanel = new SidePanel();
+sidePanel.placeAt('sidePanel');

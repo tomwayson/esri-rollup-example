@@ -9,8 +9,7 @@ export default declare([_WidgetBase, _TemplatedMixin], {
 
   baseClass: 'time-widget',
   nls: strings,
-  // using an inline template here, but this probably
-  // could have been brought in via dojo/text plugin
+  // using an inline template here
   templateString: `<div>
     ${strings.timeMessage} <span data-dojo-attach-point="timeNode"></span>
   </div>`,
