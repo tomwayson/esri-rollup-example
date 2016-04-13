@@ -1,5 +1,6 @@
+/* global define */
 define({
   root: {
-   timeMessage: 'The time is '
+    timeMessage: 'The time is '
   }
 });

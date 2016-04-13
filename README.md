@@ -10,17 +10,16 @@ Clone this repository and run:
 
 ```
 npm install
-npm run build
+npm start
 ```
 
-Serve the folder from any web server and navigate to index.html. Enjoy.
+Serve this folder from any web server and navigate to index.html. Enjoy.
 
 ## TODO:
 * how to handle other libs (like Bootstrap)? To bundle or not?
 * [test w/ React](https://github.com/rollup/rollup/issues/437)?
 * [test w/ web components](https://github.com/tomwayson/custom-elements-dev-summit-2016/)?
-* add linter, semistandard?
-* `npm start` to watch and serve
+* add watch and serve to `npm start`
 
 [Rollup]:http://rollupjs.org
 [ArcGIS API for JavaScript]:https://developers.arcgis.com/javascript/
