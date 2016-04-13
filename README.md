@@ -1,6 +1,6 @@
 # Esri Rollup Example
 
-## No Dojo build, no bullshit <sup>TM</sup>
+## Life's too short to use Dojo build <sup>TM</sup>
 
 Just an experiment using [Rollup] to bundle ES6 modules that depend on the [ArcGIS API for JavaScript]. Relies on default behavior of [Rollup] to ignore modules it can't find (i.e. anything in the `esri` package) and only bundles application code. Outputs code as AMD module that can be loaded by the Dojo loader that is included in the [ArcGIS API for JavaScript].
 
