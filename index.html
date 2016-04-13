@@ -4,20 +4,25 @@
     <title>Map</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://js.arcgis.com/3.16/esri/css/esri.css">
-    <style>
-      html, body, #map {
-        width: 100%;
-        height: 100%;
-        margin: 0;
-        display: block;
-      }
-    </style>
+    <link rel="stylesheet" href="styles/main.css">
   </head>
   <body>
     <div id="map">
+      <div id="time"></div>
+    </div>
+    <script>
+      window.dojoConfig = {
+        packages: [
+          {
+            name: 'app',
+            location: window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/')) + '/dist'
+          }
+        ]
+      }
+    </script>
     <script src="https://js.arcgis.com/3.16/"></script>
     <script>
-      require(['./dist/bundle.js']);
+      require(['app/bundle']);
     </script>
   </body>
 </html>
