@@ -13,5 +13,5 @@ replace({
   replacement: '',
   paths: ['dist/bundle.js'],
   recursive: true,
-  silent: false,
+  silent: false
 });
