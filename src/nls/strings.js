@@ -1,7 +1,7 @@
 /* global define */
 define({
   root: {
-    sidePanelTitle: 'Side Panel',
+    sidePanelTitle: 'Dijit Example',
     timeMessage: 'The time is '
   }
 });
