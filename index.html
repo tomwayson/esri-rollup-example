@@ -3,16 +3,19 @@
   <head>
     <title>Map</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://js.arcgis.com/3.16/esri/css/esri.css">
+    <!-- esri styles required for map -->
+    <link rel="stylesheet" href="https://js.arcgis.com/4.0beta3/esri/css/main.css">
+    <!-- using Calcite Bootstrap for look and feel -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <link href="http://esri.github.io/calcite-bootstrap/assets/css/calcite-bootstrap-open.min.css" rel="stylesheet">
+    <!-- app styles -->
     <link rel="stylesheet" href="styles/main.css">
   </head>
   <body>
-    <div id="map">
-      <div id="sidePanel"></div>
-    </div>
+    <!-- app's root component -->
+    <div id="app"></div>
     <script>
+      // define app as a dojo package
       window.dojoConfig = {
         packages: [
           {
@@ -22,9 +25,12 @@
         ]
       }
     </script>
-    <script src="https://js.arcgis.com/3.16/"></script>
+    <script src="https://js.arcgis.com/4.0beta3/"></script>
     <script>
-      require(['app/bundle.min']);
+      // load and run bundled app code
+      require(['app/bundle']);
+      // for production you would use 
+      // require(['app/bundle.min']);
     </script>
   </body>
 </html>
