@@ -1,12 +1,5 @@
-import mapService from './mapService';
-import SidePanel from './SidePanel';
+import App from './App';
 
-mapService.init('map', {
-  center: [-122.33, 37.75],
-  zoom: 11,
-  basemap: 'dark-gray'
-});
-mapService.addFeatureLayer('http://services.arcgis.com/rOo16HdIMeOBI4Mb/arcgis/rest/services/Alternative_Fueling_Stations/FeatureServer/0');
-
-const sidePanel = new SidePanel();
-sidePanel.placeAt('sidePanel');
+// initialize app to global var for debugging
+window.app = new App({}, 'app');
+window.app.startup();

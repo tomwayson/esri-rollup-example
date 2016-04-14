@@ -1,18 +1,29 @@
 import declare from 'dojo/_base/declare';
-import Map from 'esri/map';
+import Map from 'esri/Map';
+import MapView from 'esri/views/MapView';
 import FeatureLayer from 'esri/layers/FeatureLayer';
 
 // define a stateful service to manage the map
 const MapService = declare([], {
-  init: function (id, options) {
-    this.map = new Map(id, options);
+  // create a map and map view
+  init: function (options) {
+    this.map = new Map({
+      basemap: options.basemap
+    });
+    delete options.basemap;
+    options.map = this.map;
+    this.view = new MapView(options);
   },
-  addFeatureLayer: function (url, options) {
+
+  // add a feature layer to the map
+  addFeatureLayer: function (props) {
     if (!this.map) {
       return;
     }
 
-    this.map.addLayer(new FeatureLayer(url, options));
+    const featureLayer = new FeatureLayer(props);
+    this.map.add(featureLayer);
+    return featureLayer;
   }
 });
 
