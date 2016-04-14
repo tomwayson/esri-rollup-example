@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Map</title>
+    <title>Esri Rollup Example</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- esri styles required for map -->
     <link rel="stylesheet" href="https://js.arcgis.com/4.0beta3/esri/css/main.css">
@@ -20,17 +20,16 @@
         packages: [
           {
             name: 'app',
-            location: window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/')) + '/dist'
+            location: window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/')) + '/app'
           }
         ]
       }
     </script>
     <script src="https://js.arcgis.com/4.0beta3/"></script>
     <script>
-      // load and run bundled app code
-      require(['app/bundle']);
-      // for production you would use 
-      // require(['app/bundle.min']);
+      // load and run bundled and minified app code
+      // this includes sourcemaps for debugging
+      require(['app/bundle.min']);
     </script>
   </body>
 </html>

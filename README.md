@@ -11,7 +11,7 @@ An example application using [Rollup] to bundle local ES2015 modules that use CD
 1. Clone/download this repository
 2. `cd` into the repository root folder and run
 `npm install && npm start`
-3. Serve this folder from any web server and navigate to index.html.
+3. Make some changes to the source code and your browser should live reload
 
 ## Why?
 
