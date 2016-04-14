@@ -5,7 +5,8 @@ var rollup = require('rollup').rollup;
 var rollupBabel = require('rollup-plugin-babel');
 var rollupString = require('rollup-plugin-string');
 var browserSync = require('browser-sync');
-
+var ghPages = require('gulp-gh-pages');
+ 
 var $ = gulpLoadPlugins();
 var reload = browserSync.reload;
 
@@ -107,7 +108,14 @@ gulp.task('build', ['lint', 'scripts', 'styles', 'html'], function () {
   return gulp.src('dist/**/*').pipe($.size({title: 'build', gzip: true}));
 });
 
+// deploy to github pages
+gulp.task('deploy', ['build'], function () {
+  return gulp.src('./dist/**/*')
+    .pipe(ghPages());
+});
+
 // clean dist and run build
 gulp.task('default', ['clean'], function () {
   gulp.start('build');
 });
+

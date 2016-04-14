@@ -6,6 +6,8 @@ An example application using [Rollup] to bundle local ES2015 modules that use CD
 
 > TLDR: This provides a fast, flexible, modern way for you to build *just* your application code locally while using the CDN hosted builds of the [ArcGIS API for JavaScript].
 
+You can view the site created by this repo [live](http://tomwayson.github.io/esri-rollup-example/), and see the (unminified) [bundled source code](http://tomwayson.github.io/esri-rollup-example/app/bundle.js).
+
 ## Getting started
 
 1. Clone/download this repository
