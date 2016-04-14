@@ -4,6 +4,7 @@ export default {
     zoom: 11,
     basemap: 'dark-gray'
   },
+  secondaryBasemap: 'streets',
   fuelingStationLayerProps: {
     url: 'https://services.arcgis.com/rOo16HdIMeOBI4Mb/arcgis/rest/services/Alternative_Fueling_Stations/FeatureServer/0',
     popupTemplate: {

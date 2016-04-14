@@ -14,6 +14,7 @@ export default declare([_WidgetBase, _TemplatedMixin], {
     <div>
       <div data-dojo-attach-point="mapNode" class="map-container">
         <div data-dojo-attach-point="sidePanelNode"></div>
+        <div data-dojo-attach-point="basemapToggleNode" class="basemap-toggle" />
       </div>
     </div>
   `,
@@ -29,10 +30,19 @@ export default declare([_WidgetBase, _TemplatedMixin], {
     // initialize side panel
     this.sidePanel = new SidePanel({}, this.sidePanelNode);
 
+    // initialize the basemap toggle
+    this.basemapToggle = mapService.createBasemapToggle(this.basemapToggleNode, config.secondaryBasemap);
+
     // add feature layer and once loaded
     // set side title of side panel
     mapService.addFeatureLayer(config.fuelingStationLayerProps).then(layer => {
       this.sidePanel.set('title', formatTitle(layer.title || layer.name));
     });
+  },
+
+  // you gotta start me up
+  startup () {
+    this.sidePanel.startup();
+    this.basemapToggle.startup();
   }
 });
