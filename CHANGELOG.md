@@ -4,6 +4,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## Unreleased
 
+## v0.1.0
+
+### Added
+* added gh-pages deploy
+* added gulp build
+
 ## v0.0.8
 
 ### Changed
