@@ -4,6 +4,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## Unreleased
 
+## v0.1.1
+
+### Added
+added Sass and loading Calcite Bootstrap via Sass
+
 ### Changed
 * minor tweaks to and comments for gulp tasks
 * minor tweaks to README
