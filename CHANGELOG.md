@@ -4,6 +4,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## Unreleased
 
+### Changed
+* minor tweaks to and comments for gulp tasks
+* minor tweaks to README
+
 ## v0.1.0
 
 ### Added
