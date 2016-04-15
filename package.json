@@ -26,7 +26,7 @@
   "scripts": {
     "test": "gulp test",
     "build": "gulp",
-    "start": "gulp clean && gulp serve"
+    "start": "gulp serve"
   },
   "keywords": [
     "ArcGIS",

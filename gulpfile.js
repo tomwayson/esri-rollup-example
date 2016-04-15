@@ -6,11 +6,11 @@ var rollupBabel = require('rollup-plugin-babel');
 var rollupString = require('rollup-plugin-string');
 var browserSync = require('browser-sync');
 var ghPages = require('gulp-gh-pages');
- 
+
 var $ = gulpLoadPlugins();
 var reload = browserSync.reload;
 
-// clean output directory
+// clean output and temp directories
 gulp.task('clean', del.bind(null, ['.tmp', 'dist']));
 
 // lint source files
@@ -53,10 +53,14 @@ gulp.task('nls', function () {
 });
 
 // bundle minify and copy scripts to dist
-gulp.task('scripts', ['rollup', 'nls'], function () {
+gulp.task('scripts', ['rollup'], function () {
   gulp.src(['.tmp/bundle.js'])
+    // temp fix to remove 'use strict' from output because Dijit
+    // TODO: use a babel preset that doesn't add it in the first place
+    // and remove this step
     .pipe($.replace('\'use strict\';', ''))
     .pipe(gulp.dest('dist/app'))
+    // minify output w/ sourcemaps
     .pipe($.sourcemaps.init())
     .pipe($.uglify())
     .pipe($.sourcemaps.write())
@@ -78,12 +82,15 @@ gulp.task('html', function () {
     .pipe(gulp.dest('./dist'));
 });
 
-// test: for now just lint
-// TODO: add tests
-gulp.task('test', ['lint']);
+// build, copy to dist, and size'r up
+gulp.task('build', ['lint', 'nls', 'scripts', 'styles', 'html'], function () {
+  return gulp.src('dist/**/*').pipe($.size({title: 'build', gzip: true}));
+});
 
-gulp.task('serve', ['build'], function () {
-  // serve dist files
+// serve up the built application
+// and live-reload whenever files change
+gulp.task('serve:dist', ['build'], function () {
+  // serve build output files
   browserSync({
     notify: false,
     port: 9000,
@@ -92,21 +99,26 @@ gulp.task('serve', ['build'], function () {
     }
   });
 
-  // reload whenever dist files updated
+  // reload whenever output files updated
   gulp.watch([
     'dist/**/*'
   ]).on('change', reload);
 
-  // update dist files when source files change
+  // update output files when source files change
   gulp.watch('./src/styles/*.css', ['styles']);
-  gulp.watch('./src/app/**/*.*', ['scripts']);
+  gulp.watch('./src/app/nls/**/*.*', ['nls']);
+  gulp.watch(['./src/app/**/*.*', '!./src/app/nls/**/*.*'], ['scripts']);
   gulp.watch('./src/*.html', ['html']);
 });
 
-// copy to dist and size'r up
-gulp.task('build', ['lint', 'scripts', 'styles', 'html'], function () {
-  return gulp.src('dist/**/*').pipe($.size({title: 'build', gzip: true}));
+// remove old files then serve the built application
+gulp.task('serve', ['clean'], function () {
+  gulp.start('serve:dist');
 });
+
+// test: for now just lint
+// TODO: add tests
+gulp.task('test', ['lint']);
 
 // deploy to github pages
 gulp.task('deploy', ['build'], function () {
@@ -118,4 +130,3 @@ gulp.task('deploy', ['build'], function () {
 gulp.task('default', ['clean'], function () {
   gulp.start('build');
 });
-
