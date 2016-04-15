@@ -16,7 +16,6 @@ gulp.task('clean', del.bind(null, ['.tmp', 'dist']));
 // lint source files
 gulp.task('lint', function () {
   return gulp.src(['./src/app/**/*.js'])
-    // .pipe($.debug({title: 'lint'}))
     .pipe($.semistandard())
     .pipe($.semistandard.reporter('default', {
       breakOnError: true
@@ -68,10 +67,25 @@ gulp.task('scripts', ['rollup'], function () {
     .pipe(gulp.dest('dist/app'));
 });
 
-// styles: for now just copying
-// later may want to pre/post process
+// styles: compile Sass styles to CSS
+// TODO: may want to add autoprefixer
+// or need to add plumber to handle errors
 gulp.task('styles', function () {
-  return gulp.src('./src/styles/*.css')
+  return gulp.src('./src/styles/main.scss')
+    // .pipe($.plumber())
+    // .pipe($.debug())
+    .pipe($.sourcemaps.init())
+    .pipe($.sass.sync({
+      outputStyle: 'expanded',
+      precision: 10,
+      includePaths: [
+        '.',
+        './node_modules/bootstrap-sass/assets/stylesheets',
+        './node_modules/calcite-bootstrap/dist/sass'
+      ]
+    })) // .on('error', $.sass.logError))
+    // .pipe($.autoprefixer({browsers: ['> 1%', 'last 2 versions', 'Firefox ESR']}))
+    .pipe($.sourcemaps.write())
     .pipe(gulp.dest('./dist/styles'));
 });
 
@@ -105,7 +119,7 @@ gulp.task('serve:dist', ['build'], function () {
   ]).on('change', reload);
 
   // update output files when source files change
-  gulp.watch('./src/styles/*.css', ['styles']);
+  gulp.watch('./src/styles/*.scss', ['styles']);
   gulp.watch('./src/app/nls/**/*.*', ['nls']);
   gulp.watch(['./src/app/**/*.*', '!./src/app/nls/**/*.*'], ['scripts']);
   gulp.watch('./src/*.html', ['html']);

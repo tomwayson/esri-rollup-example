@@ -7,6 +7,7 @@
   "devDependencies": {
     "babel-preset-es2015-rollup": "^1.1.1",
     "browser-sync": "^2.12.3",
+    "calcite-bootstrap": "^0.3.2",
     "del": "^2.2.0",
     "gulp": "^3.9.1",
     "gulp-debug": "^2.1.2",
@@ -14,6 +15,7 @@
     "gulp-load-plugins": "^1.2.1",
     "gulp-rename": "^1.2.2",
     "gulp-replace": "^0.5.4",
+    "gulp-sass": "^2.2.0",
     "gulp-semistandard": "^0.2.2",
     "gulp-size": "^2.1.0",
     "gulp-sourcemaps": "^1.6.0",
