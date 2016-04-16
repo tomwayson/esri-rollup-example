@@ -4,10 +4,15 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## Unreleased
 
+## v0.1.3
+
+### Added
+* added bootstrap JS and jquery for collapsing panel
+
 ## v0.1.2
 
-## Changed
-copy vendor fonts to dist before serving
+### Changed
+* copy vendor fonts to dist before serving
 
 ## v0.1.1
 

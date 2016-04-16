@@ -10,6 +10,8 @@ var ghPages = require('gulp-gh-pages');
 var $ = gulpLoadPlugins();
 var reload = browserSync.reload;
 
+// NOTE: to debug any task add .pipe($.debug()) after the .src()
+
 // clean output and temp directories
 gulp.task('clean', del.bind(null, ['.tmp', 'dist']));
 
@@ -67,13 +69,28 @@ gulp.task('scripts', ['rollup'], function () {
     .pipe(gulp.dest('dist/app'));
 });
 
+// copy vendor scripts
+gulp.task('scripts:vendor', function () {
+  return gulp.src([
+    './node_modules/jquery/dist/jquery.min.js',
+    './node_modules/bootstrap-sass/assets/javascripts/bootstrap.min.js'
+  ])
+  .pipe($.concat('vendor.js'))
+  .pipe(gulp.dest('dist/vendor'));
+});
+
+// copy fonts from vendor dependencies
+gulp.task('fonts', function () {
+  return gulp.src('./node_modules/bootstrap-sass/assets/fonts/bootstrap/**/*.{eot,svg,ttf,woff,woff2}')
+    .pipe(gulp.dest('dist/styles/fonts'));
+});
+
 // styles: compile Sass styles to CSS
 // TODO: may want to add autoprefixer
 // or need to add plumber to handle errors
 gulp.task('styles', function () {
   return gulp.src('./src/styles/main.scss')
     // .pipe($.plumber())
-    // .pipe($.debug())
     .pipe($.sourcemaps.init())
     .pipe($.sass.sync({
       outputStyle: 'expanded',
@@ -89,12 +106,6 @@ gulp.task('styles', function () {
     .pipe(gulp.dest('./dist/styles'));
 });
 
-// copy fonts from vendor dependencies
-gulp.task('fonts', function () {
-  return gulp.src('./node_modules/bootstrap-sass/assets/fonts/bootstrap/**/*.{eot,svg,ttf,woff,woff2}')
-    .pipe(gulp.dest('dist/styles/fonts'));
-});
-
 // html: for now just copying
 // later may want to transform/minify
 gulp.task('html', function () {
@@ -103,7 +114,7 @@ gulp.task('html', function () {
 });
 
 // build, copy to dist, and size'r up
-gulp.task('build', ['lint', 'fonts', 'nls', 'scripts', 'styles', 'html'], function () {
+gulp.task('build', ['lint', 'fonts', 'scripts:vendor', 'nls', 'scripts', 'styles', 'html'], function () {
   return gulp.src('dist/**/*').pipe($.size({title: 'build', gzip: true}));
 });
 
