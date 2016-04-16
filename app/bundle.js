@@ -72,7 +72,7 @@ define(['dojo/_base/declare', 'dijit/_WidgetBase', 'dijit/_TemplatedMixin', 'esr
     var _instance = new MapService();
   }
 
-  var template = "<div class=\"panel panel-default\">\r\n  <div class=\"panel-heading\">\r\n    <h3 class=\"panel-title\" data-dojo-attach-point=\"titleNode\"></h3>\r\n  </div>\r\n  <div class=\"panel-body\">\r\n    <h4>${nls.About}</h4>\r\n    <p>${nls.sidePanelMessage}</p>\r\n  </div>\r\n</div>\r\n";
+  var template = "<div class=\"panel panel-default\">\r\n  <div class=\"panel-heading\">\r\n    <h3 class=\"panel-title\" data-dojo-attach-point=\"titleNode\"></h3>\r\n  </div>\r\n  <div class=\"panel-body\">\r\n    <h4><span class=\"glyphicon glyphicon-info-sign\" aria-hidden=\"true\"></span> ${nls.About}</h4>\r\n    <p>${nls.sidePanelMessage}</p>\r\n  </div>\r\n</div>\r\n";
 
   var SidePanel = declare([_WidgetBase, _TemplatedMixin], {
 
