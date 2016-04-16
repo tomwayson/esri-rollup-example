@@ -4,6 +4,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## Unreleased
 
+## v0.1.2
+
+## Changed
+copy vendor fonts to dist before serving
+
 ## v0.1.1
 
 ### Added
