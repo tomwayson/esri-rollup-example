@@ -72,7 +72,7 @@ define(['dojo/_base/declare', 'dijit/_WidgetBase', 'dijit/_TemplatedMixin', 'esr
     var _instance = new MapService();
   }
 
-  var template = "<div class=\"panel panel-default\">\r\n  <div class=\"panel-heading\">\r\n    <h4 class=\"panel-title\">\r\n      <a role=\"button\" data-toggle=\"collapse\" data-dojo-attach-point=\"titleNode\" data-target=\".info-panel\" aria-expanded=\"false\" aria-controls=\"collapseOne\"></a>\r\n    </h4>\r\n  </div>\r\n  <div class=\"panel-collapse collapse in info-panel\" role=\"tabpanel\">\r\n    <div class=\"panel-body\">\r\n      <h4><span class=\"glyphicon glyphicon-info-sign\" aria-hidden=\"true\"></span> ${nls.About}</h4>\r\n      <p>${nls.sidePanelMessage}</p>\r\n    </div>\r\n  </div>\r\n</div>\r\n";
+  var template = "<div class=\"panel panel-default\">\r\n  <div class=\"panel-heading\">\r\n    <h4 class=\"panel-title\">\r\n      <span class=\"glyphicon glyphicon-chevron-up\"></span>\r\n      <a role=\"button\" data-toggle=\"collapse\" data-dojo-attach-point=\"titleNode\" data-target=\".info-panel\" aria-expanded=\"false\" aria-controls=\"collapseOne\"></a>\r\n    </h4>\r\n  </div>\r\n  <div class=\"panel-collapse collapse in info-panel\" role=\"tabpanel\">\r\n    <div class=\"panel-body\">\r\n      <h4>${nls.About}</h4>\r\n      <p>${nls.sidePanelMessage}</p>\r\n    </div>\r\n  </div>\r\n</div>\r\n";
 
   var SidePanel = declare([_WidgetBase, _TemplatedMixin], {
 
@@ -81,7 +81,16 @@ define(['dojo/_base/declare', 'dijit/_WidgetBase', 'dijit/_TemplatedMixin', 'esr
     templateString: template,
 
     // set panel header title
-    _setTitleAttr: { node: 'titleNode', type: 'innerHTML' }
+    _setTitleAttr: { node: 'titleNode', type: 'innerHTML' },
+
+    // wire up events
+    postCreate: function postCreate() {
+      var domNodeId = '#' + this.domNode.id;
+      // update chevron icon when panel collapses/expands
+      $(domNodeId + ' .collapse').on('hide.bs.collapse show.bs.collapse', function () {
+        $(domNodeId + ' .panel-title .glyphicon').toggleClass('glyphicon-chevron-up glyphicon-chevron-down');
+      });
+    }
   });
 
   // place stateless utility functions in this file
