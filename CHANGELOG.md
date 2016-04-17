@@ -2,10 +2,13 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-## Unreleased
+## v0.1.3
 
-### Changed
+### Added
 * added chevron icon to collapsing panel and dynamically update (up/down) using jQuery global
+
+### Support
+* lint bfore script tasks in live reload
 
 ## v0.1.3
 

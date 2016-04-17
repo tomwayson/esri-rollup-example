@@ -20,7 +20,7 @@ gulp.task('lint', function () {
   return gulp.src(['./src/app/**/*.js'])
     .pipe($.semistandard())
     .pipe($.semistandard.reporter('default', {
-      breakOnError: true
+      breakOnError: !browserSync.active
     }));
 });
 
@@ -137,8 +137,8 @@ gulp.task('serve:dist', ['build'], function () {
 
   // update output files when source files change
   gulp.watch('./src/styles/*.scss', ['styles']);
-  gulp.watch('./src/app/nls/**/*.*', ['nls']);
-  gulp.watch(['./src/app/**/*.*', '!./src/app/nls/**/*.*'], ['scripts']);
+  gulp.watch('./src/app/nls/**/*.*', ['lint', 'nls']);
+  gulp.watch(['./src/app/**/*.*', '!./src/app/nls/**/*.*'], ['lint', 'scripts']);
   gulp.watch('./src/*.html', ['html']);
 });
 
