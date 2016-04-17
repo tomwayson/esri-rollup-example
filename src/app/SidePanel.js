@@ -1,3 +1,7 @@
+// NOTE: using jQuery global intead of importing
+// because it is included it in vendor.js
+// and we don't want it bundled with our application code
+/* global $:false */
 import declare from 'dojo/_base/declare';
 import _WidgetBase from 'dijit/_WidgetBase';
 import _TemplatedMixin from 'dijit/_TemplatedMixin';
@@ -13,5 +17,14 @@ export default declare([_WidgetBase, _TemplatedMixin], {
   templateString: template,
 
   // set panel header title
-  _setTitleAttr: { node: 'titleNode', type: 'innerHTML' }
+  _setTitleAttr: { node: 'titleNode', type: 'innerHTML' },
+
+  // wire up events
+  postCreate () {
+    let domNodeId = '#' + this.domNode.id;
+    // update chevron icon when panel collapses/expands
+    $(domNodeId + ' .collapse').on('hide.bs.collapse show.bs.collapse', () => {
+      $(domNodeId + ' .panel-title .glyphicon').toggleClass('glyphicon-chevron-up glyphicon-chevron-down');
+    });
+  }
 });

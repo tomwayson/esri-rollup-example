@@ -4,6 +4,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## Unreleased
 
+### Changed
+* added chevron icon to collapsing panel and dynamically update (up/down) using jQuery global
+
 ## v0.1.3
 
 ### Added
