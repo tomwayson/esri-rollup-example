@@ -2,7 +2,9 @@
 @import 'calcite-bootstrap';
 /* set the output folder for fonts */
 $icon-font-path: './fonts/';
-@import 'bootstrap';
+
+// contains only the bootstrap modules used in this app
+@import 'appstrap';
 
 /* app layout */
 html, body, #app, .map-container {
