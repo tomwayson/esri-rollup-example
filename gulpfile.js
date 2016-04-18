@@ -69,12 +69,16 @@ gulp.task('scripts', ['rollup'], function () {
     .pipe(gulp.dest('dist/app'));
 });
 
-// copy vendor scripts
+// concatenate vendor scripts and minify (as needed)
 gulp.task('scripts:vendor', function () {
   return gulp.src([
     './node_modules/jquery/dist/jquery.min.js',
-    './node_modules/bootstrap-sass/assets/javascripts/bootstrap.min.js'
+    // NOTE: include other bootstrap components here as needed
+    './node_modules/bootstrap-sass/assets/javascripts/bootstrap/transition.js',
+    './node_modules/bootstrap-sass/assets/javascripts/bootstrap/collapse.js'
   ])
+  // minify unminified source (only)
+  .pipe($.if('!*.min.js', $.uglify()))
   .pipe($.concat('vendor.js'))
   .pipe(gulp.dest('dist/vendor'));
 });
