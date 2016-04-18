@@ -2,12 +2,12 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-## v0.1.4
+## v0.1.5
 
 ### Changed
 * only include the bootstrap components used by the app
 
-## v0.1.3
+## v0.1.4
 
 ### Added
 * added chevron icon to collapsing panel and dynamically update (up/down) using jQuery global
