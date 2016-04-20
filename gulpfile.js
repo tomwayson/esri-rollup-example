@@ -119,7 +119,7 @@ gulp.task('html', function () {
 
 // build, copy to dist, and size'r up
 gulp.task('build', ['lint', 'fonts', 'scripts:vendor', 'nls', 'scripts', 'styles', 'html'], function () {
-  return gulp.src('dist/**/*').pipe($.size({title: 'build', gzip: true}));
+  return gulp.src('dist/**/*').pipe($.size({title: 'build', gzip: true, showFiles: true}));
 });
 
 // serve up the built application
