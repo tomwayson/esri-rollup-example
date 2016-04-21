@@ -5,11 +5,13 @@
   "main": "src/main.js",
   "dependencies": {},
   "devDependencies": {
+    "babel-plugin-transform-es2015-modules-amd": "^6.6.5",
     "babel-preset-es2015-rollup": "^1.1.1",
     "browser-sync": "^2.12.3",
     "calcite-bootstrap": "^0.3.2",
     "del": "^2.2.0",
     "gulp": "^3.9.1",
+    "gulp-babel": "^6.1.2",
     "gulp-concat": "^2.6.0",
     "gulp-debug": "^2.1.2",
     "gulp-gh-pages": "^0.5.4",

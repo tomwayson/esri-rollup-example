@@ -24,6 +24,17 @@ gulp.task('lint', function () {
     }));
 });
 
+gulp.task('babel', () => {
+  return gulp.src('./src/app/**/*.js')
+    .pipe($.sourcemaps.init())
+    .pipe($.babel({
+      presets: ['es2015'],
+      plugins: ['transform-es2015-modules-amd']
+    }))
+    .pipe($.sourcemaps.write('.'))
+    .pipe(gulp.dest('dev'));
+});
+
 // rollup scripts
 gulp.task('rollup', function () {
   return rollup({
@@ -64,7 +75,7 @@ gulp.task('scripts', ['rollup'], function () {
     // minify output w/ sourcemaps
     .pipe($.sourcemaps.init())
     .pipe($.uglify())
-    .pipe($.sourcemaps.write())
+    .pipe($.sourcemaps.write('.'))
     .pipe($.rename({ suffix: '.min' }))
     .pipe(gulp.dest('dist/app'));
 });
@@ -106,7 +117,7 @@ gulp.task('styles', function () {
       ]
     })) // .on('error', $.sass.logError))
     // .pipe($.autoprefixer({browsers: ['> 1%', 'last 2 versions', 'Firefox ESR']}))
-    .pipe($.sourcemaps.write())
+    .pipe($.sourcemaps.write('.'))
     .pipe(gulp.dest('./dist/styles'));
 });
 
@@ -119,7 +130,11 @@ gulp.task('html', function () {
 
 // build, copy to dist, and size'r up
 gulp.task('build', ['lint', 'fonts', 'scripts:vendor', 'nls', 'scripts', 'styles', 'html'], function () {
-  return gulp.src('dist/**/*').pipe($.size({title: 'build', gzip: true}));
+  return gulp.src('dist/**/*').pipe($.size({
+    title: 'build',
+    gzip: true,
+    showFiles: true
+  }));
 });
 
 // serve up the built application
