@@ -61,25 +61,29 @@ gulp.task('scripts', ['rollup'], function () {
     // and remove this step
     .pipe($.replace('\'use strict\';', ''))
     .pipe(gulp.dest('dist/app'))
-    // minify output w/ sourcemaps
+    // also include minified output
     .pipe($.sourcemaps.init())
     .pipe($.uglify())
-    .pipe($.sourcemaps.write())
     .pipe($.rename({ suffix: '.min' }))
+    .pipe($.sourcemaps.write('.'))
     .pipe(gulp.dest('dist/app'));
 });
 
 // concatenate vendor scripts and minify (as needed)
 gulp.task('scripts:vendor', function () {
   return gulp.src([
-    './node_modules/jquery/dist/jquery.min.js',
+    './node_modules/jquery/dist/jquery.js',
     // NOTE: include other bootstrap components here as needed
     './node_modules/bootstrap-sass/assets/javascripts/bootstrap/transition.js',
     './node_modules/bootstrap-sass/assets/javascripts/bootstrap/collapse.js'
   ])
-  // minify unminified source (only)
-  .pipe($.if('!*.min.js', $.uglify()))
+  .pipe($.sourcemaps.init())
   .pipe($.concat('vendor.js'))
+  .pipe(gulp.dest('dist/vendor'))
+  // also include minified output
+  .pipe($.uglify())
+  .pipe($.rename({ suffix: '.min' }))
+  .pipe($.sourcemaps.write('.'))
   .pipe(gulp.dest('dist/vendor'));
 });
 
@@ -106,7 +110,7 @@ gulp.task('styles', function () {
       ]
     })) // .on('error', $.sass.logError))
     // .pipe($.autoprefixer({browsers: ['> 1%', 'last 2 versions', 'Firefox ESR']}))
-    .pipe($.sourcemaps.write())
+    .pipe($.sourcemaps.write('.'))
     .pipe(gulp.dest('./dist/styles'));
 });
 
@@ -119,7 +123,11 @@ gulp.task('html', function () {
 
 // build, copy to dist, and size'r up
 gulp.task('build', ['lint', 'fonts', 'scripts:vendor', 'nls', 'scripts', 'styles', 'html'], function () {
-  return gulp.src('dist/**/*').pipe($.size({title: 'build', gzip: true, showFiles: true}));
+  return gulp.src('dist/**/*').pipe($.size({
+    title: 'build',
+    gzip: true,
+    showFiles: true
+  }));
 });
 
 // serve up the built application
