@@ -13,7 +13,7 @@ var reload = browserSync.reload;
 // NOTE: to debug any task add .pipe($.debug()) after the .src()
 
 // clean output and temp directories
-gulp.task('clean', del.bind(null, ['.tmp', 'dist']));
+gulp.task('clean', del.bind(null, ['dist']));
 
 // lint source files
 gulp.task('lint', function () {
@@ -41,8 +41,10 @@ gulp.task('rollup', function () {
     ]
   }).then(function (bundle) {
     return bundle.write({
+      // Dojo friendly output options
       format: 'amd',
-      dest: '.tmp/bundle.js'
+      useStrict: false,
+      dest: 'dist/app/bundle.js'
     });
   });
 });
@@ -55,13 +57,8 @@ gulp.task('nls', function () {
 
 // bundle minify and copy scripts to dist
 gulp.task('scripts', ['rollup'], function () {
-  gulp.src(['.tmp/bundle.js'])
-    // temp fix to remove 'use strict' from output because Dijit
-    // TODO: use a babel preset that doesn't add it in the first place
-    // and remove this step
-    .pipe($.replace('\'use strict\';', ''))
-    .pipe(gulp.dest('dist/app'))
-    // also include minified output
+  gulp.src(['dist/app/bundle.js'])
+    // include minified output
     .pipe($.sourcemaps.init())
     .pipe($.uglify())
     .pipe($.rename({ suffix: '.min' }))

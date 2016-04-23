@@ -21,6 +21,7 @@ export default declare([_WidgetBase, _TemplatedMixin], {
 
   // wire up events
   postCreate () {
+    this.inherited(arguments);
     let domNodeId = '#' + this.domNode.id;
     // update chevron icon when panel collapses/expands
     $(domNodeId + ' .collapse').on('hide.bs.collapse show.bs.collapse', () => {
