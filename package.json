@@ -1,6 +1,6 @@
 {
   "name": "esri-rollup-example",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "Example application using Rollup to bundle local ES2015 modules that use CDN hosted modules from the ArcGIS API for JavaScript",
   "main": "src/main.js",
   "dependencies": {
