@@ -27,7 +27,7 @@ gulp.task('lint', function () {
 // rollup scripts
 gulp.task('rollup', function () {
   return rollup({
-    entry: 'src/app/main.js',
+    entry: 'src/app/App.js',
     plugins: [
       // compile future ES 2015 to runnable ES 5
       rollupBabel({
@@ -44,7 +44,7 @@ gulp.task('rollup', function () {
       // Dojo friendly output options
       format: 'amd',
       useStrict: false,
-      dest: 'dist/app/bundle.js'
+      dest: 'dist/app/App.js'
     });
   });
 });
