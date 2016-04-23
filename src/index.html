@@ -29,7 +29,11 @@
     <script>
       // load and run bundled and minified app code
       // this includes sourcemaps for debugging
-      require(['app/bundle.min']);
+      require(['app/App'], function(App) {
+        // initialize app to global var for debugging
+        window.app = new App({}, 'app');
+        window.app.startup();
+      });
     </script>
   </body>
 </html>
