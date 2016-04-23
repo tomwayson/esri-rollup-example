@@ -4,6 +4,14 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## Unreleased
 
+## v0.1.7
+
+### Added
+- added missing `this.inherited(arguments)` to side panel widget
+
+### Support
+- Use Rollup's `useStrict: false` option instead of gulp-replace on the bundled output.
+
 ## v0.1.6
 
 ### Added
