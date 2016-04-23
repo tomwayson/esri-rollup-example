@@ -1,4 +1,4 @@
-define(['dojo/_base/declare', 'dijit/_WidgetBase', 'dijit/_TemplatedMixin', 'esri/Map', 'esri/views/MapView', 'esri/layers/FeatureLayer', 'esri/widgets/BasemapToggle', 'esri/widgets/BasemapToggle/BasemapToggleViewModel', 'dojo/i18n!./nls/strings'], function (declare, _WidgetBase, _TemplatedMixin, Map, MapView, FeatureLayer, BasemapToggle, BasemapToggleVM, strings) { 
+define(['dojo/_base/declare', 'dijit/_WidgetBase', 'dijit/_TemplatedMixin', 'esri/Map', 'esri/views/MapView', 'esri/layers/FeatureLayer', 'esri/widgets/BasemapToggle', 'esri/widgets/BasemapToggle/BasemapToggleViewModel', 'dojo/i18n!./nls/strings'], function (declare, _WidgetBase, _TemplatedMixin, Map, MapView, FeatureLayer, BasemapToggle, BasemapToggleVM, strings) {
 
     declare = 'default' in declare ? declare['default'] : declare;
     _WidgetBase = 'default' in _WidgetBase ? _WidgetBase['default'] : _WidgetBase;
@@ -93,6 +93,7 @@ define(['dojo/_base/declare', 'dijit/_WidgetBase', 'dijit/_TemplatedMixin', 'esr
 
       // wire up events
       postCreate: function postCreate() {
+        this.inherited(arguments);
         var domNodeId = '#' + this.domNode.id;
         // update chevron icon when panel collapses/expands
         $(domNodeId + ' .collapse').on('hide.bs.collapse show.bs.collapse', function () {
@@ -451,8 +452,6 @@ define(['dojo/_base/declare', 'dijit/_WidgetBase', 'dijit/_TemplatedMixin', 'esr
       }
     });
 
-    // initialize app to global var for debugging
-    window.app = new App({}, 'app');
-    window.app.startup();
+    return App;
 
 });
