@@ -33,6 +33,8 @@ gulp.task('scripts:app', function () {
     plugins: [
       // compile future ES 2015 to runnable ES 5
       rollupBabel({
+        babelrc: false,
+        presets: ['es2015-rollup'],
         runtimeHelpers: true,
         // don't compile templates
         exclude: 'src/app/templates/**'

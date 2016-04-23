@@ -4,9 +4,12 @@
   "description": "Example application using Rollup to bundle local ES2015 modules that use CDN hosted modules from the ArcGIS API for JavaScript",
   "main": "src/main.js",
   "dependencies": {
+    "capitalize-word": "^0.1.2",
     "lodash-es": "^4.11.1"
   },
   "devDependencies": {
+    "ava": "^0.14.0",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.7.7",
     "babel-preset-es2015-rollup": "^1.1.1",
     "browser-sync": "^2.12.3",
     "calcite-bootstrap": "^0.3.2",
@@ -31,7 +34,7 @@
     "semistandard": "^7.0.5"
   },
   "scripts": {
-    "test": "gulp test",
+    "test": "gulp test && ava",
     "build": "gulp",
     "start": "gulp serve"
   },
@@ -41,5 +44,9 @@
     "Rollup"
   ],
   "author": "Tom Wayson <tom@tomwayson.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "ava": {
+    "require": "babel-register",
+    "babel": "inherit"
+  }
 }

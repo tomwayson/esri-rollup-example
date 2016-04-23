@@ -2,7 +2,8 @@
 // importing their functions directly and
 // Rollup will include the function and others it references
 // in the bundled output along with the application code
-import capitalize from '../../node_modules/lodash-es/capitalize';
+// import capitalize from '../../node_modules/lodash-es/capitalize';
+import capitalize from '../../node_modules/capitalize-word/index';
 
 // place stateless utility functions in this file
 // they can be imported into other files as needed
