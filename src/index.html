@@ -22,14 +22,14 @@
         ]
       }
     </script>
-    <!-- load bundled vendor scripts -->
+    <!-- load bundled and minified vendor scripts -->
     <script src="vendor/vendor.min.js"></script>
     <!-- load ArcGIS API for JavaScript from CDN -->
     <script src="https://js.arcgis.com/4.0beta3/"></script>
     <script>
       // load and run bundled and minified app code
       // this includes sourcemaps for debugging
-      require(['app/App'], function(App) {
+      require(['app/App.min'], function(App) {
         // initialize app to global var for debugging
         window.app = new App({}, 'app');
         window.app.startup();

@@ -4,6 +4,7 @@ var del = require('del');
 var rollup = require('rollup').rollup;
 var rollupBabel = require('rollup-plugin-babel');
 var rollupString = require('rollup-plugin-string');
+var rollupUglify = require('rollup-plugin-uglify');
 var browserSync = require('browser-sync');
 var ghPages = require('gulp-gh-pages');
 
@@ -24,46 +25,41 @@ gulp.task('lint', function () {
     }));
 });
 
-// rollup scripts
-gulp.task('rollup', function () {
+// bunlde, minify, and generate sourcemaps
+// for app scripts using rollup
+gulp.task('scripts:app', function () {
   return rollup({
     entry: 'src/app/App.js',
     plugins: [
       // compile future ES 2015 to runnable ES 5
       rollupBabel({
         runtimeHelpers: true,
-        exclude: 'src/app/templates/**' // don't compile templates
+        // don't compile templates
+        exclude: 'src/app/templates/**'
       }),
       // load templates from files
       rollupString({
         extensions: ['.html']
-      })
+      }),
+      // minify output
+      rollupUglify()
     ]
   }).then(function (bundle) {
     return bundle.write({
+      // include sourcemaps to ES2015 files
+      sourceMap: true,
       // Dojo friendly output options
       format: 'amd',
       useStrict: false,
-      dest: 'dist/app/App.js'
+      dest: 'dist/app/App.min.js'
     });
   });
 });
 
 // copy nls files to dist
-gulp.task('nls', function () {
+gulp.task('scripts:nls', function () {
   return gulp.src('./src/app/nls/**/*.js')
     .pipe(gulp.dest('./dist/app/nls'));
-});
-
-// bundle minify and copy scripts to dist
-gulp.task('scripts', ['rollup'], function () {
-  gulp.src(['dist/app/bundle.js'])
-    // include minified output
-    .pipe($.sourcemaps.init())
-    .pipe($.uglify())
-    .pipe($.rename({ suffix: '.min' }))
-    .pipe($.sourcemaps.write('.'))
-    .pipe(gulp.dest('dist/app'));
 });
 
 // concatenate vendor scripts and minify (as needed)
@@ -119,7 +115,7 @@ gulp.task('html', function () {
 });
 
 // build, copy to dist, and size'r up
-gulp.task('build', ['lint', 'fonts', 'scripts:vendor', 'nls', 'scripts', 'styles', 'html'], function () {
+gulp.task('build', ['lint', 'fonts', 'scripts:vendor', 'scripts:nls', 'scripts:app', 'styles', 'html'], function () {
   return gulp.src('dist/**/*').pipe($.size({
     title: 'build',
     gzip: true,
@@ -146,8 +142,8 @@ gulp.task('serve:dist', ['build'], function () {
 
   // update output files when source files change
   gulp.watch('./src/styles/*.scss', ['styles']);
-  gulp.watch('./src/app/nls/**/*.*', ['lint', 'nls']);
-  gulp.watch(['./src/app/**/*.*', '!./src/app/nls/**/*.*'], ['lint', 'scripts']);
+  gulp.watch('./src/app/nls/**/*.*', ['lint', 'scripts:nls']);
+  gulp.watch(['./src/app/**/*.*', '!./src/app/nls/**/*.*'], ['lint', 'scripts:app']);
   gulp.watch('./src/*.html', ['html']);
 });
 

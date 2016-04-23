@@ -4,6 +4,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## Unreleased
 
+## v0.1.9
+- using Rollup to uglify source and generate sourcemaps
+
+### Support
+- only bundle app, startup app in index, drop main
+
 ## v0.1.8
 
 ### Changed
