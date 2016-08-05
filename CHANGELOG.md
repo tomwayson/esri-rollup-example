@@ -2,7 +2,9 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-## Unreleased
+## v0.1.10
+- update to JSAPI 4.0
+- update to latest rollup and rollup-plugin-uglify to fix build errors
 
 ## v0.1.9
 - using Rollup to uglify source and generate sourcemaps
