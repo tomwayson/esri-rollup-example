@@ -118,6 +118,10 @@ Obviously the Dojo build is much better than Rollup at handling AMD-only librari
 * I used to (twitter/facebook/read War and Peace/prep for the Bar exam/crochet) while I was waiting for the Dojo build to finish, when can I do that now?
   * Now you can spend time on your hobbies after you've shipped!
 
+Look how happy you could be if you were using Rollup.
+
+[![Wiz Khalifa - Roll Up Official Music Video](https://img.youtube.com/vi/UhQz-0QVmQ0/0.jpg)](https://www.youtube.com/watch?v=UhQz-0QVmQ0)
+
 [Rollup]:http://rollupjs.org
 [ArcGIS API for JavaScript]:https://developers.arcgis.com/javascript/
 [Gulp]:http://gulpjs.com/
