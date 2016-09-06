@@ -114,7 +114,7 @@ Obviously the Dojo build is much better than Rollup at handling AMD-only librari
 * Should I use the compact build?
   * Depends. You should use the [compact build](https://developers.arcgis.com/javascript/jshelp/intro_accessapi.html#compact-build) unless you are going to use modules that aren't included in it (i.e. `esri/dijit/...`), in which case you should use the full build
 * Shouldn't I be able to do the same thing with [webpack](https://webpack.github.io/)?
-  * Go for it. Let me know how that works out for ya.
+  * Go for it. You can [start here](https://github.com/tomwayson/esri-webpack/tree/es2015). Let me know how that works out for ya.
 * I used to (twitter/facebook/read War and Peace/prep for the Bar exam/crochet) while I was waiting for the Dojo build to finish, when can I do that now?
   * Now you can spend time on your hobbies after you've shipped!
 
