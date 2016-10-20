@@ -7,7 +7,8 @@
     "lodash-es": "^4.11.1"
   },
   "devDependencies": {
-    "babel-preset-es2015-rollup": "^1.1.1",
+    "babel-plugin-external-helpers": "^6.8.0",
+    "babel-preset-es2015": "^6.16.0",
     "browser-sync": "^2.12.3",
     "calcite-bootstrap": "^0.3.2",
     "del": "^2.2.0",
@@ -19,16 +20,16 @@
     "gulp-load-plugins": "^1.2.1",
     "gulp-rename": "^1.2.2",
     "gulp-sass": "^2.2.0",
-    "gulp-semistandard": "^0.2.2",
+    "gulp-semistandard": "^1.0.0",
     "gulp-size": "^2.1.0",
-    "gulp-sourcemaps": "^1.6.0",
-    "gulp-uglify": "^1.5.3",
+    "gulp-sourcemaps": "^2.1.1",
+    "gulp-uglify": "^2.0.0",
     "jquery": "^2.2.3",
-    "rollup": "^0.34.2",
-    "rollup-plugin-babel": "^2.4.0",
-    "rollup-plugin-string": "^1.0.1",
+    "rollup": "^0.36.3",
+    "rollup-plugin-babel": "^2.6.1",
+    "rollup-plugin-string": "^2.0.2",
     "rollup-plugin-uglify": "^1.0.1",
-    "semistandard": "^7.0.5"
+    "semistandard": "^9.1.0"
   },
   "scripts": {
     "test": "gulp test",

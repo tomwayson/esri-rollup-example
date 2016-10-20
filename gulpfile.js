@@ -39,7 +39,7 @@ gulp.task('scripts:app', function () {
       }),
       // load templates from files
       rollupString({
-        extensions: ['.html']
+        include: ['**/*.html']
       }),
       // minify output
       rollupUglify()
