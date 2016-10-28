@@ -3,6 +3,9 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## Unreleased
+## v0.1.9
+### Support
+- bump dependencies, add repo to package.json
 
 ## v0.1.9
 ### Changed
