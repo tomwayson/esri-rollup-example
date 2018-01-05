@@ -1,5 +1,7 @@
 # Esri Rollup Example
 
+**UPDATE**: This technique demonstrated in this repository will work, but you should probably just use [esri-loader](https://github.com/Esri/esri-loader/).
+
 ## Life's Too $hort to Use Dojo Build <sup>TM</sup>
 
 **TLDR: An example of a fast, flexible, modern way for you to build *just* your application code locally while using the CDN hosted builds of the [ArcGIS API for JavaScript].**
